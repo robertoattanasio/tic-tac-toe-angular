@@ -7,22 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tic-tac-toe';
-  usefulInfo: string = 'Inizia la Partita!';
+  // PROMPT A SCHERMO
+  usefulInfo = 'Inizia la Partita!';
   // TABELLA VUOTA
   table = ['', '', '', '', '', '', '', '', ''];
   // BLOCCO TABELLA
   tableLocked: boolean = false;
-  // SEQUENZE CORRETTE
-  results = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
 
   // GIOCATORE TRUE = "0", GIOCATORE FALSE = "X"
   isPlayer = false;
@@ -48,10 +38,21 @@ export class AppComponent {
 
   // METODO DI CONTROLLO RISULTATO
   checkResult(currentPlayer: any) {
+    // SEQUENZE CORRETTE
+    let results = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
     let checkCounter: number = 0;
 
     // CICLO FOREACH PER ANALIZZARE ARRAY RISULTATO
-    this.results.forEach((currentSequence) => {
+    results.forEach((currentSequence) => {
       // CICLO FOREACH PER CONTROLLO SINGOLA SEQUENZA
       currentSequence.forEach((position) => {
         if (this.table[position] == currentPlayer) {

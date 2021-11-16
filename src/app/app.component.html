@@ -3,8 +3,4 @@
     [tableLocked]="tableLocked">
   </app-square>
 </div>
-<div class="info">
-  <p>{{ usefulInfo }}</p>
-  <button (click)="resetGame()">Reset</button>
-
-</div>
+<app-info [usefulInfo]="usefulInfo"></app-info>
