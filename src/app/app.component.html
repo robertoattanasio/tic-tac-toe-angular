@@ -1,9 +1,7 @@
 <div class="container">
-  <div class="square" *ngFor="let squareValue of table, let i = index" (click)="getSquareId(i)"
-    [ngStyle]="{pointerEvents: tableLocked ? 'none':'auto', cursor : tableLocked ? 'not-allowed': 'pointer'}">
-    {{
-    squareValue }}
-  </div>
+  <app-square *ngFor="let squareValue of table,  let i = index" [answer]="squareValue" (click)="getSquareId(i)"
+    [tableLocked]="tableLocked">
+  </app-square>
 </div>
 <div class="info">
   <p>{{ usefulInfo }}</p>
