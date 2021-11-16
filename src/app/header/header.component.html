@@ -1,6 +1,6 @@
 <header>
     <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/tic-tac-toe">Gioco</a></li>
+        <li><a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/">Home</a></li>
+        <li><a routerLinkActive="active" routerLink="/tic-tac-toe">Gioco</a></li>
     </ul>
 </header>

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { SquareComponent } from './game/square/square.component';
 import { InfoComponent } from './game/info/info.component';
+import { GameService } from './game.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,14 +22,14 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SquareComponent,
-    InfoComponent,
     HeaderComponent,
     HomeComponent,
     GameComponent,
+    SquareComponent,
+    InfoComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
-  providers: [],
+  providers: [GameService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

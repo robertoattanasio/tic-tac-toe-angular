@@ -1,38 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css'],
+  providers: [],
 })
-export class GameComponent {
-  // PROMPT A SCHERMO
-  usefulInfo = 'Inizia la Partita!';
-  // TABELLA VUOTA
-  table = ['', '', '', '', '', '', '', '', ''];
-  // BLOCCO TABELLA
-  tableLocked: boolean = false;
-  // DEFINIZIONE GIOCATORI
-  player: 'X' | 'O' = 'X';
-  // CONTATORE TURNI
-  turnCounter = 0;
+export class GameComponent implements OnInit {
+  constructor(public gamedata: GameService) {}
+
+  ngOnInit() {}
 
   nextMove(i: number) {
     // CHECK CASELLA VUOTA
-    if (this.table[i] == '') {
+    if (this.gamedata.table[i] == '') {
       // TURNO AGGIUNTO AL CONTATORE
-      this.turnCounter++;
+      this.gamedata.turnCounter++;
       // INSERIMENTO GIOCATORE NELLA CASELLA
-      this.table[i] = this.player;
+      this.gamedata.table[i] = this.gamedata.player;
       // PROMPT GIOCATORE SUCCESSIVO
-      this.usefulInfo = `È il turno di ${this.player === 'X' ? 'O' : 'X'}`;
+      this.gamedata.usefulInfo = `È il turno di ${
+        this.gamedata.player === 'X' ? 'O' : 'X'
+      }`;
       // CHECK RISULTATO
-      this.checkResult(this.player);
+      this.checkResult(this.gamedata.player);
 
-      this.player = this.player === 'X' ? 'O' : 'X';
+      this.gamedata.player = this.gamedata.player === 'X' ? 'O' : 'X';
     } else {
       // ALERT PER CASELLA OCCUPATA
-      this.usefulInfo = "Casella già occupata, scegline un'altra.";
+      this.gamedata.usefulInfo = "Casella già occupata, scegline un'altra.";
     }
   }
 
@@ -55,17 +52,17 @@ export class GameComponent {
     results.forEach((currentSequence) => {
       // CICLO FOREACH PER CONTROLLO SINGOLA SEQUENZA
       currentSequence.forEach((position) => {
-        if (this.table[position] == currentPlayer) {
+        if (this.gamedata.table[position] == currentPlayer) {
           checkCounter++;
           // CASISTICA DI VITTORIA
           if (checkCounter > 2) {
-            this.usefulInfo = `Vince ${currentPlayer} al turno numero ${this.turnCounter}.`;
+            this.gamedata.usefulInfo = `Vince ${currentPlayer} al turno numero ${this.gamedata.turnCounter}.`;
             // LOCK DELLA BOARD
-            this.tableLocked = true;
+            this.gamedata.tableLocked = true;
             // CASO DI PARITA'
-          } else if (this.turnCounter == 9) {
-            this.usefulInfo = `Tavola riempita, premere Reset per ricominciare.`;
-            this.tableLocked = true;
+          } else if (this.gamedata.turnCounter == 9) {
+            this.gamedata.usefulInfo = `Tavola riempita, premere Reset per ricominciare.`;
+            this.gamedata.tableLocked = true;
           }
         }
       });
@@ -75,10 +72,10 @@ export class GameComponent {
   }
   // METODO RESET DEL GIOCO
   resetGame() {
-    this.player = 'X';
-    this.tableLocked = false;
-    this.turnCounter = 0;
-    this.table = ['', '', '', '', '', '', '', '', ''];
-    this.usefulInfo = 'Inizia la Partita!';
+    this.gamedata.player = 'X';
+    this.gamedata.tableLocked = false;
+    this.gamedata.turnCounter = 0;
+    this.gamedata.table = ['', '', '', '', '', '', '', '', ''];
+    this.gamedata.usefulInfo = 'Inizia la Partita!';
   }
 }
