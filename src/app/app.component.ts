@@ -13,23 +13,24 @@ export class AppComponent {
   table = ['', '', '', '', '', '', '', '', ''];
   // BLOCCO TABELLA
   tableLocked: boolean = false;
-
-  // GIOCATORE TRUE = "0", GIOCATORE FALSE = "X"
-  isPlayer = false;
+  // DEFINIZIONE GIOCATORI
+  player: 'X' | 'O' = 'X';
   // CONTATORE TURNI
   turnCounter = 0;
 
-  getSquareId(i: number) {
+  nextMove(i: number) {
     // CHECK CASELLA VUOTA
     if (this.table[i] == '') {
       // TURNO AGGIUNTO AL CONTATORE
       this.turnCounter++;
       // INSERIMENTO GIOCATORE NELLA CASELLA
-      this.table[i] = this.isPlayer ? 'O' : 'X';
+      this.table[i] = this.player;
+      // PROMPT GIOCATORE SUCCESSIVO
+      this.usefulInfo = `È il turno di ${this.player === 'X' ? 'O' : 'X'}`;
       // CHECK RISULTATO
-      this.checkResult(this.isPlayer ? 'O' : 'X');
+      this.checkResult(this.player);
 
-      this.isPlayer = !this.isPlayer;
+      this.player = this.player === 'X' ? 'O' : 'X';
     } else {
       // ALERT PER CASELLA OCCUPATA
       this.usefulInfo = "Casella già occupata, scegline un'altra.";
@@ -75,7 +76,7 @@ export class AppComponent {
   }
   // METODO RESET DEL GIOCO
   resetGame() {
-    this.isPlayer = false;
+    this.player = 'X';
     this.tableLocked = false;
     this.turnCounter = 0;
     this.table = ['', '', '', '', '', '', '', '', ''];
