@@ -1,0 +1,9 @@
+<main class="gamePage">
+    <div class="table">
+        <app-square *ngFor="let squareValue of table,  let i = index" [answer]="squareValue" (click)="nextMove(i)"
+            [tableLocked]="tableLocked"
+            [ngStyle]="{pointerEvents: tableLocked ? 'none':'auto', cursor : tableLocked ? 'not-allowed': 'pointer'}">
+        </app-square>
+    </div>
+    <app-info [usefulInfo]="usefulInfo" (resetTable)="resetGame()"></app-info>
+</main>

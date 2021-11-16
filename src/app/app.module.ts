@@ -1,20 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 
+// MAIN APP
 import { AppComponent } from './app.component';
-import { SquareComponent } from './square/square.component';
-import { InfoComponent } from './info/info.component';
+// HEADER
+import { HeaderComponent } from './header/header.component';
+// HOME
+import { HomeComponent } from './home/home.component';
+// GAME
+import { GameComponent } from './game/game.component';
+import { SquareComponent } from './game/square/square.component';
+import { InfoComponent } from './game/info/info.component';
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'tic-tac-toe', component: GameComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     SquareComponent,
-    InfoComponent
+    InfoComponent,
+    HeaderComponent,
+    HomeComponent,
+    GameComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

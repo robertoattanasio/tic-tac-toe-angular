@@ -1,0 +1,16 @@
+main.gamePage {
+  margin-top: 50px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+.table {
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 3px;
+}

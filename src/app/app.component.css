@@ -1,9 +1,1 @@
-.container {
-  width: 600px;
-  height: 600px;
-  margin: 100px auto 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 3px;
-}
+
