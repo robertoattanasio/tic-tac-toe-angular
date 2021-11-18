@@ -1,12 +1,9 @@
 <main class="gamePage">
     <div class="table">
         <app-square *ngFor="let squareValue of table$ | async,  let i = index" [answer]="squareValue"
-            [tableLocked]="tableLocked$ | async" (click)="nextMove(squareValue,i)">
+            [tableLocked]="tableLocked$ | async" (click)="nextMove(squareValue,i)" [ngStyle]=" {pointerEvents: (tableLocked$ | async) ? 'none' :'auto', cursor : (tableLocked$ | async)
+            ? 'not-allowed' : 'pointer' }">
         </app-square>
     </div>
     <app-info [usefulInfo]="usefulInfo$ | async" (resetTable)="resetGame()"></app-info>
 </main>
-
-
-<!-- [ngStyle]=" {pointerEvents: tableLocked$ | async ? 'none' :'auto', cursor : tableLocked$ | async
-            ? 'not-allowed' : 'pointer' }" -->
