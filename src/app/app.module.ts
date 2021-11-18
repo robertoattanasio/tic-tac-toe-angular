@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
+// NGRX
+import { StoreModule } from '@ngrx/store';
+import { gameReducer } from './game/game.reducer';
 // MAIN APP
 import { AppComponent } from './app.component';
 // HEADER
@@ -28,7 +31,13 @@ const appRoutes: Routes = [
     SquareComponent,
     InfoComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    StoreModule.forRoot({
+      game: gameReducer,
+    }),
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+  ],
   providers: [GameService],
   bootstrap: [AppComponent],
 })
